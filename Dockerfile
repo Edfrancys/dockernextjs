@@ -14,7 +14,7 @@ COPY . /home/next
 EXPOSE 3000
 
 RUN yarn global add prisma
-RUN prisma generate
+RUN prisma migrate dev
 
 RUN yarn build
 
