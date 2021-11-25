@@ -1,18 +1,20 @@
 FROM node:16.13.0-alpine
 
-RUN yarn global add prisma
+RUN mkdir /home/next
 
+COPY package.json /home/next
 WORKDIR /home/next
 
-COPY package*.json ./
+RUN ls -l
 
 RUN yarn install
 
-COPY . ./
+COPY . /home/next
 
 EXPOSE 3000
 
-RUN prisma migrate dev
+RUN yarn global add prisma
+RUN prisma generate
 
 RUN yarn build
 
