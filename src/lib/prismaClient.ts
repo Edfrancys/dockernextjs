@@ -1,7 +1,15 @@
 import { PrismaClient } from '@prisma/client';
+import { env } from 'process';
 
-let prisma: PrismaClient;
+interface CustomGlobalType {
+    prisma: PrismaClient
+}
 
-prisma = new PrismaClient()
+declare const global: CustomGlobalType
+
+const prisma = global.prisma || new PrismaClient()
+
+if (process.env.NEXT_ENV === 'development')
+    global.prisma = prisma
 
 export default prisma;

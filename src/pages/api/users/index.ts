@@ -17,7 +17,6 @@ const Users: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) 
             success: {
                 message: "Success"
             },
-            body: reqData,
             result: allUsers
         })
     } else if (req.method === "POST") {
