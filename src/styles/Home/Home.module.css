@@ -1,0 +1,38 @@
+.boxUserBody{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: rgb(238, 238, 238);
+}
+
+.boxUser{
+    padding: 2rem;
+
+    background: rgb(255, 255, 255);
+    box-shadow: 0 0 3px rgb(94, 94, 94);
+}
+
+.boxUser section.flexRow {
+    display: flex;
+    flex-direction: row;
+}
+
+section .image{
+    width: 28%;
+}
+
+section .image img{
+    width: 100%;
+}
+
+section .contain{
+    width: 72%;
+    padding-left: 1.2rem;
+}
+span.small {
+    font-size: 0.85rem;
+}

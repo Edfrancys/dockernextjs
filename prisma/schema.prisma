@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["linux-musl"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  uuid      String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  enderecos Enderecos[]
+  company   Company[]
+}
+
+model Enderecos {
+  uuid        String   @id @default(uuid())
+  rua         String
+  cep         String
+  numero      String
+  complemento String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user   Users  @relation(fields: [userId], references: [uuid])
+  userId String
+}
+
+model Company {
+  uuid         String   @id @default(uuid())
+  nomeFantasia String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user   Users  @relation(fields: [userId], references: [uuid])
+  userId String
+
+  geolocation Geolocation[]
+  product     Product[]
+}
+
+model Geolocation {
+  uuid        String   @id @default(uuid())
+  rua         String
+  numero      String
+  cep         String
+  bairro      String
+  estado      String
+  complemento String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  company   Company @relation(fields: [companyId], references: [uuid])
+  companyId String
+}
+
+model Product {
+  uuid      String @id @default(uuid())
+  nome      String
+  descricao String @db.LongText
+
+  valor            Float
+  valorPromocional Float
+
+  altura      Int
+  largura     Int
+  comprimento Int
+  peso        Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+
+
+  company   Company @relation(fields: [companyId], references: [uuid])
+  companyId String
+
+  category   Category @relation(fields: [categoryId], references: [uuid])
+  categoryId String
+}
+
+model Category {
+  uuid      String   @id @default(uuid())
+  nome      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Product Product[]
+}

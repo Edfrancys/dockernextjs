@@ -6,7 +6,14 @@ const Users: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) 
 
     const allUsers = await prisma.users.findMany({
         include: {
-            enderecos: true
+            enderecos: true,
+            company: {
+                include: {
+                    geolocation: true,
+                    product: true
+                }
+            }
+
         }
     })
 

@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-import { env } from 'process';
 
 interface CustomGlobalType {
     prisma: PrismaClient
