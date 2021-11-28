@@ -1,12 +1,8 @@
 import { Geolocation, Company, Enderecos, Users } from ".prisma/client"
 import { GetServerSideProps } from "next"
-import prisma from "../lib/prismaClient"
+import prisma from "../../lib/prismaClient"
 
-import Link from "next/link"
-
-import styles from '../styles/Home/Home.module.css'
-
-
+import styles from '../../styles/Home/Home.module.css'
 
 interface UsersExtencion extends Users {
     enderecos: Enderecos[]
@@ -45,7 +41,7 @@ export default function Home({ users }: any) {
                                 user.company.map((company: CompanyExtencion) => (
                                     <div key={company.uuid}>
                                         <p>
-                                            Empresas: <Link href={`/company/${company.uuid}`}><a className={styles.link}> {company.nomeFantasia}</a></Link>, <br />
+                                            Empresas: {company.nomeFantasia}, <br />
                                             <span className={styles.small}>
                                                 {
                                                     company.geolocation.map((geolocation: Geolocation) => (

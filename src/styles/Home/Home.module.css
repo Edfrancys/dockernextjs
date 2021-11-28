@@ -36,3 +36,17 @@ section .contain{
 span.small {
     font-size: 0.85rem;
 }
+
+span.badge {
+    background: chartreuse;
+    color: rgb(11, 28, 60);
+    padding: .2rem .4rem;
+    border-radius: 50%;
+}
+a.link {
+    color: crimson;
+    font-weight: 700;
+}
+a:hover.link {
+    text-decoration: underline;
+}
